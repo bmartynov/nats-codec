@@ -31,7 +31,7 @@ impl Message {
             Self::Ok => {
                 dst.put_slice(&b"+OK\r\n"[..]);
             }
-            Self::Err(_) => todo!(),
+            Self::Err(p) => p.encode(dst)?,
             Self::Ping => {
                 dst.put_slice(&b"PING\r\n"[..]);
             }
